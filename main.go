@@ -40,11 +40,22 @@ func KmToPrice(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// Return a price in the wanted devise based on the distance
+func Index(w http.ResponseWriter, r *http.Request) {
+	res := "HelloWorld"
+
+	err := json.NewEncoder(w).Encode(res)
+	if err != nil {
+		fmt.Println(err)
+	}
+}
+
 // main function to boot up everything
 func main() {
 	port := "8042"
 	router := mux.NewRouter()
 	fmt.Println("Server running on port " + port)
 	router.HandleFunc("/kmToPrice/{devise}/{km:[0-9]+.[0-9]+}", KmToPrice).Methods("GET")
+	router.HandleFunc("/", Index).Methods("GET")
 	log.Fatal(http.ListenAndServe(":"+port, router))
 }
