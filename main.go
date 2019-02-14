@@ -42,7 +42,7 @@ func KmToPrice(w http.ResponseWriter, r *http.Request) {
 
 // main function to boot up everything
 func main() {
-	port := "80"
+	port := "8042"
 	router := mux.NewRouter()
 	fmt.Println("Server running on port " + port)
 	router.HandleFunc("/kmToPrice/{devise}/{km:[0-9]+.[0-9]+}", KmToPrice).Methods("GET")
