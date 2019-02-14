@@ -6,6 +6,7 @@ import (
 	"github.com/gorilla/mux"
 	"log"
 	"net/http"
+	"os"
 	"strconv"
 )
 
@@ -57,5 +58,6 @@ func main() {
 	fmt.Println("Server running on port " + port)
 	router.HandleFunc("/kmToPrice/{devise}/{km:[0-9]+.[0-9]+}", KmToPrice).Methods("GET")
 	router.HandleFunc("/", Index).Methods("GET")
-	log.Fatal(http.ListenAndServe(":"+port, router))
+	//log.Fatal(http.ListenAndServe(":"+port, router))
+	log.Fatal(http.ListenAndServe(":"+os.Getenv("PORT"), router))
 }
